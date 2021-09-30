@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using QuanLyNhaSach.BUS;
 using QuanLyNhaSach.Model;
 
 namespace QuanLyNhaSach
@@ -7,15 +8,18 @@ namespace QuanLyNhaSach
     public partial class FChiTietHoaDon : Form
     {
         public int ma;
-
+        BUS.BUS_Sach bSach;
+        BUS_ChiTietHD bChiTietHD;
         public FChiTietHoaDon()
         {
             InitializeComponent();
+            bSach = new BUS_Sach();
+            bChiTietHD = new BUS_ChiTietHD();
         }
         private void CapNhatView()
         {
+            bChiTietHD.LayDSCTDH(gVCTDH,ma);
 
-            //bus.LayDSCTDH(gVCTDH, ma);
             gVCTDH.Columns[0].Width = (int)(0.2 * gVCTDH.Width);
             gVCTDH.Columns[1].Width = (int)(0.2 * gVCTDH.Width);
             gVCTDH.Columns[2].Width = (int)(0.2 * gVCTDH.Width);
@@ -25,54 +29,48 @@ namespace QuanLyNhaSach
 
         private void btThem_Click(object sender, EventArgs e)
         {
-            bool kt = true;
-            if (txtDonGia.Text == "" || txtSoLuong.Text == "")
-            {
-                kt = false;
-                MessageBox.Show("Vui lòng không bỏ trống đơn giá/ số lượng sản phẩm",
-                   "Thông báo", MessageBoxButtons.OK);
-            }
-            else
-            {
-                // kiểm tra thêm chi tiết đơn hàng có trùng sản phẩm không
-                for (int i = 0; i < gVCTDH.Rows.Count; i++)
-                {
-                    if (gVCTDH.CurrentRow.Cells[1].Value.ToString() == cbTenSP.SelectedValue.ToString())
-                    {
-                        kt = false;
-                        MessageBox.Show("Sản phẩm đã được đặt trong đơn hàng",
-                   "Thông báo", MessageBoxButtons.OK);
-                        break;
-                    }
-                }
-                if (kt)
-                {
-                    ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
-                    chiTietHoaDon.ChiTietHoaDonId = int.Parse(txtMaDH.Text);
-                    chiTietHoaDon.SachId = int.Parse(cbTenSP.SelectedValue.ToString());
-                    chiTietHoaDon.DonGia = decimal.Parse(txtDonGia.Text);
-                    chiTietHoaDon.SoLuong = short.Parse(txtSoLuong.Text);
-                    //bus.ThemCTDH(order);
-                    gVCTDH.Columns.Clear();
-                    //bus.LayDSCTDH(gVCTDH, ma);
-                }
-
-            }
+            FDatSach fDatHang = new FDatSach();
+            fDatHang.maDH = ma;
+            fDatHang.ShowDialog();
         }
 
         private void btXoa_Click(object sender, EventArgs e)
         {
-            //int maDH = int.Parse(txtMaDH.Text);
-            //int maSP = int.Parse(gVCTDH.CurrentRow.Cells["ProductID"].Value.ToString());
-            //bus.XoaCTDH(maDH, maSP);
-            //gVCTDH.Columns.Clear();
-            //bus.LayDSCTDH(gVCTDH, ma);
+            int maDH = int.Parse(txtMaDH.Text);
+            int maSP = int.Parse(cbSP.SelectedValue.ToString());
+            bChiTietHD.XoaCTDH(maDH, maSP);
+            gVCTDH.Columns.Clear();
+            bChiTietHD.LayDSCTDH(gVCTDH, ma);
         }
-
         private void btThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
 
+        private void FChiTietHoaDon_Load(object sender, EventArgs e)
+        {
+            CapNhatView();
+            txtMaDH.Text = ma.ToString();
+            txtMaDH.Enabled = false;
+            bSach.LayDanhSachSach(cbSP);
+        }
+
+        private void FChiTietHoaDon_Activated(object sender, EventArgs e)
+        {
+            bChiTietHD.LayDSCTDH(gVCTDH, ma);
+        }
+
+        private void gVCTDH_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < gVCTDH.Rows.Count)
+            {
+                txtMaDH.Text = gVCTDH.Rows[e.RowIndex].Cells["HoaDonId"].Value.ToString();
+                txtDonGia.Text = gVCTDH.Rows[e.RowIndex].Cells["DonGia"].Value.ToString();
+                txtSoLuong.Text = gVCTDH.Rows[e.RowIndex].Cells["SoLuong"].Value.ToString();
+                cbSP.Text = gVCTDH.Rows[e.RowIndex].Cells["TenSach"].Value.ToString();
+                //bSach.Lay1SP(cbSP, int.Parse());
+
+            }
         }
     }
 }
