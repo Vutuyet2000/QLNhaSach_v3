@@ -35,10 +35,9 @@ namespace QuanLyNhaSach
             this.dienThoaiLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbTenSP = new System.Windows.Forms.ComboBox();
+            this.cbSP = new System.Windows.Forms.ComboBox();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
             this.txtDonGia = new System.Windows.Forms.TextBox();
-            this.txtMaSP = new System.Windows.Forms.TextBox();
             this.txtMaDH = new System.Windows.Forms.TextBox();
             this.dtpNgayDonHang = new System.Windows.Forms.DateTimePicker();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -81,9 +80,9 @@ namespace QuanLyNhaSach
             this.ngaySinhLabel.Location = new System.Drawing.Point(25, 92);
             this.ngaySinhLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ngaySinhLabel.Name = "ngaySinhLabel";
-            this.ngaySinhLabel.Size = new System.Drawing.Size(97, 17);
+            this.ngaySinhLabel.Size = new System.Drawing.Size(71, 17);
             this.ngaySinhLabel.TabIndex = 4;
-            this.ngaySinhLabel.Text = "Mã sản phẩm:";
+            this.ngaySinhLabel.Text = "Tên sách:";
             // 
             // diaChiLabel
             // 
@@ -113,16 +112,15 @@ namespace QuanLyNhaSach
             this.label1.Location = new System.Drawing.Point(437, 46);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 25);
+            this.label1.Size = new System.Drawing.Size(193, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "CHI TIẾT ĐƠN HÀNG";
+            this.label1.Text = "CHI TIẾT HOÁ ĐƠN";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbTenSP);
+            this.groupBox1.Controls.Add(this.cbSP);
             this.groupBox1.Controls.Add(this.txtSoLuong);
             this.groupBox1.Controls.Add(this.txtDonGia);
-            this.groupBox1.Controls.Add(this.txtMaSP);
             this.groupBox1.Controls.Add(this.hoTenNhanVienLabel);
             this.groupBox1.Controls.Add(this.txtMaDH);
             this.groupBox1.Controls.Add(this.ngaySinhLabel);
@@ -137,14 +135,14 @@ namespace QuanLyNhaSach
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin đơn hàng";
             // 
-            // cbTenSP
+            // cbSP
             // 
-            this.cbTenSP.Enabled = false;
-            this.cbTenSP.FormattingEnabled = true;
-            this.cbTenSP.Location = new System.Drawing.Point(165, 117);
-            this.cbTenSP.Name = "cbTenSP";
-            this.cbTenSP.Size = new System.Drawing.Size(265, 24);
-            this.cbTenSP.TabIndex = 13;
+            this.cbSP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSP.FormattingEnabled = true;
+            this.cbSP.Location = new System.Drawing.Point(165, 96);
+            this.cbSP.Name = "cbSP";
+            this.cbSP.Size = new System.Drawing.Size(264, 24);
+            this.cbSP.TabIndex = 16;
             // 
             // txtSoLuong
             // 
@@ -163,16 +161,6 @@ namespace QuanLyNhaSach
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.Size = new System.Drawing.Size(265, 22);
             this.txtDonGia.TabIndex = 11;
-            // 
-            // txtMaSP
-            // 
-            this.txtMaSP.AcceptsReturn = true;
-            this.txtMaSP.Enabled = false;
-            this.txtMaSP.Location = new System.Drawing.Point(165, 87);
-            this.txtMaSP.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMaSP.Name = "txtMaSP";
-            this.txtMaSP.Size = new System.Drawing.Size(265, 22);
-            this.txtMaSP.TabIndex = 10;
             // 
             // txtMaDH
             // 
@@ -216,6 +204,7 @@ namespace QuanLyNhaSach
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -326,7 +315,7 @@ namespace QuanLyNhaSach
             this.groupBox3.Size = new System.Drawing.Size(892, 370);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Chi tiết đơn hàng";
+            this.groupBox3.Text = "Chi tiết hoá đơn";
             // 
             // gVCTDH
             // 
@@ -338,6 +327,7 @@ namespace QuanLyNhaSach
             this.gVCTDH.RowTemplate.Height = 28;
             this.gVCTDH.Size = new System.Drawing.Size(867, 331);
             this.gVCTDH.TabIndex = 1;
+            this.gVCTDH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gVCTDH_CellClick);
             // 
             // menuStrip1
             // 
@@ -345,7 +335,7 @@ namespace QuanLyNhaSach
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1019, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1019, 30);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -361,7 +351,9 @@ namespace QuanLyNhaSach
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FChiTietHoaDon";
-            this.Text = "FOrderDetails";
+            this.Text = "FChiTietHoaDon";
+            this.Activated += new System.EventHandler(this.FChiTietHoaDon_Activated);
+            this.Load += new System.EventHandler(this.FChiTietHoaDon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -398,11 +390,10 @@ namespace QuanLyNhaSach
         private System.Windows.Forms.Label ngaySinhLabel;
         private System.Windows.Forms.Label diaChiLabel;
         private System.Windows.Forms.Label dienThoaiLabel;
-        private System.Windows.Forms.TextBox txtMaSP;
         private System.Windows.Forms.TextBox txtSoLuong;
         private System.Windows.Forms.TextBox txtDonGia;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ComboBox cbTenSP;
         private System.Windows.Forms.DataGridView gVCTDH;
+        private System.Windows.Forms.ComboBox cbSP;
     }
 }

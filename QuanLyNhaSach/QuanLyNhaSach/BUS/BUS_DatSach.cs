@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace QuanLyNhaSach.BUS
 {
-    class BUS_MatKhau
+    class BUS_DatSach
     {
-        DAO_MatKhau dMK;
-        public BUS_MatKhau() {
-            dMK = new DAO_MatKhau();
+        DAO_DatSach da;
+
+        public BUS_DatSach()
+        {
+            da = new DAO_DatSach();
+
         }
-        public List<MatKhau> layDSDN() {
-            return dMK.LayDSDangNhap();
+
+        public Sach HienThiDSSP(int ma)
+        {
+            return da.HienThiThongTinSP(ma);
         }
     }
 }

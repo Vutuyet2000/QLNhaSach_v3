@@ -86,5 +86,27 @@ namespace QuanLyNhaSach.BUS
                 return false;
             }
         }
+
+        public void LayDanhSachSach(ComboBox cb)
+        {
+            cb.DataSource = dSach.LayDSSach();
+            cb.DisplayMember = "TenSach";
+            cb.ValueMember = "SachId";
+        }
+
+        public void Lay1SP(ComboBox cb, int ma)
+        {
+            dSach.NapCBDSSP(cb, ma);
+        }
+
+        public void LayDSSP(ComboBox cb)
+        {
+            dSach.NapCBDSSP(cb);
+        }
+
+        public String LayTenTheoMa(ComboBox combo)
+        {
+            return dSach.LayTenTheoMaSach(int.Parse(combo.SelectedValue.ToString()));
+        }
     }
 }

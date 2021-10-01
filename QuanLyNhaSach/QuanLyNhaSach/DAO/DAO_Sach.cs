@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyNhaSach.DAO
 {
@@ -62,6 +63,41 @@ namespace QuanLyNhaSach.DAO
             }
             else
                 return false;
+        }
+
+        // LẤY TÊN SẢN PHẨM THEO MÃ SẢN PHẨM BẰNG METHOD
+        public dynamic LayTenTheoMaSP(int ma)
+        {
+            var tenSP = db.Sach.Where(p => p.SachId == ma)
+                .Select(sp => new
+                {
+                    sp.TenSach,
+                    sp.SachId
+
+                });
+            return tenSP;
+        }
+
+        // NAP DANH SÁCH SAN PHẢM LÊN COMBOBOX THEO MÃ SP
+        public void NapCBDSSP(ComboBox cb, int ma)
+        {
+            cb.DataSource = LayTenTheoMaSP(ma);
+            cb.DisplayMember = "TenSach";
+            cb.ValueMember = "SachId";
+        }
+
+        // NAP DANH SÁCH SAN PHẢM LÊN COMBOBOX SP
+        public void NapCBDSSP(ComboBox cb)
+        {
+            cb.DataSource = LayDSSach();
+            cb.DisplayMember = "TenSach";
+            cb.ValueMember = "SachId";
+        }
+
+        public String LayTenTheoMaSach(int ma)
+        {
+            Sach s = db.Sach.Find(ma);
+            return s.TenSach;
         }
     }
 }

@@ -53,6 +53,7 @@ namespace QuanLyNhaSach
             txtMaDH.Text = ma.ToString();
             txtMaDH.Enabled = false;
             bSach.LayDanhSachSach(cbSP);
+            cbSP.Enabled = false;
         }
 
         private void FChiTietHoaDon_Activated(object sender, EventArgs e)

@@ -59,9 +59,9 @@ namespace QuanLyNhaSach
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gVDH = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.btnThemCTDH = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
+            this.btnCT = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,6 +207,7 @@ namespace QuanLyNhaSach
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -284,6 +285,7 @@ namespace QuanLyNhaSach
             this.btThoat.TabIndex = 3;
             this.btThoat.Text = "Thoát";
             this.btThoat.UseVisualStyleBackColor = true;
+            this.btThoat.Click += new System.EventHandler(this.btThoat_Click_1);
             // 
             // btSua
             // 
@@ -294,6 +296,7 @@ namespace QuanLyNhaSach
             this.btSua.TabIndex = 2;
             this.btSua.Text = "Sửa";
             this.btSua.UseVisualStyleBackColor = true;
+            this.btSua.Click += new System.EventHandler(this.btSua_Click_1);
             // 
             // btXoa
             // 
@@ -304,6 +307,7 @@ namespace QuanLyNhaSach
             this.btXoa.TabIndex = 1;
             this.btXoa.Text = "Xóa";
             this.btXoa.UseVisualStyleBackColor = true;
+            this.btXoa.Click += new System.EventHandler(this.btXoa_Click_1);
             // 
             // btThem
             // 
@@ -338,6 +342,8 @@ namespace QuanLyNhaSach
             this.gVDH.RowTemplate.Height = 28;
             this.gVDH.Size = new System.Drawing.Size(867, 331);
             this.gVDH.TabIndex = 0;
+            this.gVDH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gVDH_CellClick_1);
+            this.gVDH.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gVDH_CellDoubleClick_1);
             // 
             // menuStrip1
             // 
@@ -348,16 +354,6 @@ namespace QuanLyNhaSach
             this.menuStrip1.Size = new System.Drawing.Size(1019, 24);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // btnThemCTDH
-            // 
-            this.btnThemCTDH.Location = new System.Drawing.Point(425, 279);
-            this.btnThemCTDH.Margin = new System.Windows.Forms.Padding(4);
-            this.btnThemCTDH.Name = "btnThemCTDH";
-            this.btnThemCTDH.Size = new System.Drawing.Size(100, 71);
-            this.btnThemCTDH.TabIndex = 4;
-            this.btnThemCTDH.Text = "Thêm CTHD";
-            this.btnThemCTDH.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -377,6 +373,17 @@ namespace QuanLyNhaSach
             this.statusStrip2.TabIndex = 17;
             this.statusStrip2.Text = "a";
             // 
+            // btnCT
+            // 
+            this.btnCT.Location = new System.Drawing.Point(425, 279);
+            this.btnCT.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCT.Name = "btnCT";
+            this.btnCT.Size = new System.Drawing.Size(100, 71);
+            this.btnCT.TabIndex = 0;
+            this.btnCT.Text = "Thêm chi tiết";
+            this.btnCT.UseVisualStyleBackColor = true;
+            this.btnCT.Click += new System.EventHandler(this.btnCT_Click);
+            // 
             // FHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -384,8 +391,8 @@ namespace QuanLyNhaSach
             this.ClientSize = new System.Drawing.Size(1019, 751);
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnThemCTDH);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.btnCT);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -393,6 +400,7 @@ namespace QuanLyNhaSach
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FHoaDon";
             this.Text = "Quản lý hoá đơn";
+            this.Load += new System.EventHandler(this.FHoaDon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -435,8 +443,8 @@ namespace QuanLyNhaSach
         private System.Windows.Forms.DateTimePicker dtpNgayDH;
         private System.Windows.Forms.ComboBox cbKH;
         private System.Windows.Forms.ComboBox cbNhanVien;
-        private System.Windows.Forms.Button btnThemCTDH;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.StatusStrip statusStrip2;
+        private System.Windows.Forms.Button btnCT;
     }
 }

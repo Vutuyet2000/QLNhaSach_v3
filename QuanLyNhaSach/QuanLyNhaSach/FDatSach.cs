@@ -1,5 +1,4 @@
-﻿using QuanLyNhaSach.Bus;
-using QuanLyNhaSach.Model;
+﻿using QuanLyNhaSach.Model;
 using System;
 using System.Data;
 using System.Drawing;
@@ -10,7 +9,7 @@ namespace QuanLyNhaSach.BUS
     public partial class FDatSach : Form
     {
         public int maDH;
-        bool flag = false; 
+        bool flag = false;
         BUS_Sach busSach;
         BUS_DatSach busDatSach;
         BUS_HoaDon busHD;
@@ -22,7 +21,7 @@ namespace QuanLyNhaSach.BUS
             busSach = new BUS_Sach();
             busDatSach = new BUS_DatSach();
             busHD = new BUS_HoaDon();
-             BUS_ChiTiet= new BUS_ChiTietHD();
+            BUS_ChiTiet = new BUS_ChiTietHD();
 
         }
 
@@ -59,34 +58,34 @@ namespace QuanLyNhaSach.BUS
 
         private void btThem_Click(object sender, EventArgs e)
         {
-            if(numSoLuong.Value==0 ||txtDonGia.Text.Equals(""))
+            if (numSoLuong.Value == 0 || txtDonGia.Text.Equals(""))
                 MessageBox.Show("Vui lòng không bỏ trống đơn giá/ số lượng sản phẩm",
                    "Thông báo", MessageBoxButtons.OK);
-                bool kiemtra = true;
-                foreach (DataRow item in dtSanPham.Rows)
+            bool kiemtra = true;
+            foreach (DataRow item in dtSanPham.Rows)
+            {
+                if (item[0].ToString() == cbSP.SelectedValue.ToString())
                 {
-                    if (item[0].ToString() == cbSP.SelectedValue.ToString())
-                    {
-                        kiemtra = true;
-                        item[2] = int.Parse(item[2].ToString()) + numSoLuong.Value;
-                        item[1] = numSoLuong.Value * decimal.Parse(txtDonGia.Text);
-                        break;
-                    }
-                   
+                    kiemtra = false;
+                    item[2] = int.Parse(item[2].ToString()) + numSoLuong.Value;
+                    item[1] = numSoLuong.Value * decimal.Parse(txtDonGia.Text);
+                    break;
                 }
 
-                if (kiemtra)
-                {
-                    // định nghĩa 1 dòng mới
-                    DataRow dataRow = dtSanPham.NewRow();
-                    dataRow[0] = cbSP.SelectedValue.ToString();
-                    dataRow[1] = numSoLuong.Value * decimal.Parse(txtDonGia.Text);
-                    dataRow[2] = numSoLuong.Value.ToString();
-                    dataRow[3] = busSach.LayTenTheoMa(cbSP);
-                    //add dong moi vao datatable
-                    dtSanPham.Rows.Add(dataRow);
-                }
-            
+            }
+
+            if (kiemtra)
+            {
+                // định nghĩa 1 dòng mới
+                DataRow dataRow = dtSanPham.NewRow();
+                dataRow[0] = cbSP.SelectedValue.ToString();
+                dataRow[1] = numSoLuong.Value * decimal.Parse(txtDonGia.Text);
+                dataRow[2] = numSoLuong.Value.ToString();
+                dataRow[3] = busSach.LayTenTheoMa(cbSP);
+                //add dong moi vao datatable
+                dtSanPham.Rows.Add(dataRow);
+            }
+
         }
 
         private void btXoa_Click(object sender, EventArgs e)
@@ -149,18 +148,42 @@ namespace QuanLyNhaSach.BUS
 
         private void btTaoDonHang_Click(object sender, EventArgs e)
         {
-            ChiTietHoaDon o = new ChiTietHoaDon();
-            o.HoaDonId = maDH;
-            o.SachId = int.Parse(cbSP.SelectedValue.ToString());
-            o.SoLuong = short.Parse(numSoLuong.Value.ToString());
-            o.DonGia = Int32.Parse(txtDonGia.Text.Replace(".", ""));
-            if (BUS_ChiTiet.ThemCTDH(o))
+            bool kiemtra = true;
+            foreach (DataRow item in dtSanPham.Rows)
+            {
+                ChiTietHoaDon o = new ChiTietHoaDon();
+                o.HoaDonId = maDH;
+                o.SachId = int.Parse(item[0].ToString());
+                o.SoLuong = short.Parse(item[2].ToString());
+                o.DonGia = Int32.Parse(item[1].ToString().Replace(".", ""));
+
+                if (!BUS_ChiTiet.ThemCTDH(o))
+                {
+                    kiemtra = false;
+                    break;
+                }
+            }
+
+            if (kiemtra)
             {
                 MessageBox.Show("Thêm chi tiết đơn hàng thành công", "Thông báo", MessageBoxButtons.OK);
                 Close();
             }
             else
                 MessageBox.Show("Thêm chi tiết đơn hàng không thành công", "Thông báo", MessageBoxButtons.OK);
+
+            //o.HoaDonId = maDH;
+            //o.SachId = int.Parse(cbSP.SelectedValue.ToString());
+            ////o.SoLuong = short.Parse(numSoLuong.Value.ToString());
+
+            //o.DonGia = Int32.Parse(txtDonGia.Text.Replace(".", ""));
+            //if (BUS_ChiTiet.ThemCTDH(o))
+            //{
+            //    MessageBox.Show("Thêm chi tiết đơn hàng thành công", "Thông báo", MessageBoxButtons.OK);
+            //    Close();
+            //}
+            //else
+            //    MessageBox.Show("Thêm chi tiết đơn hàng không thành công", "Thông báo", MessageBoxButtons.OK);
         }
 
         private void cbSP_SelectedIndexChanged(object sender, EventArgs e)

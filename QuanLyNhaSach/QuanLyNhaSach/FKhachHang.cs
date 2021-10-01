@@ -56,7 +56,7 @@ namespace QuanLyNhaSach
             busKH.HienThiDSKhachHang(dGKH);
             dGKH.Columns[0].Width = (int)(dGKH.Width * 0.22);
             dGKH.Columns[1].Width = (int)(dGKH.Width * 0.24);
-            dGKH.Columns[2].Width = (int)(dGKH.Width * 0.24);
+            dGKH.Columns[2].Width = (int)(dGKH.Width * 0.22);
             dGKH.Columns[3].Width = (int)(dGKH.Width * 0.24);
         }
 

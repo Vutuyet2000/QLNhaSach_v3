@@ -10,12 +10,12 @@ namespace QuanLyNhaSach.BUS
 {
     class BUS_MatKhau
     {
-        DAO_MatKhau dMK;
+        DAO_MatKhau dao_MK;
         public BUS_MatKhau() {
-            dMK = new DAO_MatKhau();
+            dao_MK = new DAO_MatKhau();
         }
         public List<MatKhau> layDSDN() {
-            return dMK.LayDSDangNhap();
+            return dao_MK.LayDSDangNhap();
         }
     }
 }

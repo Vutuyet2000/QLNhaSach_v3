@@ -9,12 +9,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>QuanLyNhaSach</RootNamespace>
     <AssemblyName>QuanLyNhaSach</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,12 +58,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDBContext.cs" />
+    <Compile Include="BUS\BUS_ChiTietHD.cs" />
+    <Compile Include="BUS\BUS_DatSach.cs" />
     <Compile Include="BUS\BUS_HoaDon.cs" />
+    <Compile Include="BUS\BUS_KhachHang.cs" />
     <Compile Include="BUS\BUS_MatKhau.cs" />
     <Compile Include="BUS\BUS_NhanVien.cs" />
     <Compile Include="BUS\BUS_Sach.cs" />
     <Compile Include="DAO\DAO_ChiTietHoaDon.cs" />
+    <Compile Include="DAO\DAO_DatSach.cs" />
     <Compile Include="DAO\DAO_HoaDon.cs" />
+    <Compile Include="DAO\DAO_KhachHang.cs" />
     <Compile Include="DAO\DAO_MatKhau.cs" />
     <Compile Include="DAO\DAO_NhanVien.cs" />
     <Compile Include="DAO\DAO_Sach.cs" />
@@ -78,11 +84,23 @@
     <Compile Include="FDangNhap.Designer.cs">
       <DependentUpon>FDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="FDatSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FDatSach.Designer.cs">
+      <DependentUpon>FDatSach.cs</DependentUpon>
+    </Compile>
     <Compile Include="FHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FHoaDon.Designer.cs">
       <DependentUpon>FHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FKhachHang.Designer.cs">
+      <DependentUpon>FKhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="FMain.cs">
       <SubType>Form</SubType>
@@ -92,6 +110,14 @@
     </Compile>
     <Compile Include="Migrations\202109201608372_updateBangHoaDon.cs" />
     <Compile Include="Migrations\202109220709249_ThemDL.cs" />
+    <Compile Include="Migrations\202109280358477_update.cs" />
+    <Compile Include="Migrations\202109280358477_update.Designer.cs">
+      <DependentUpon>202109280358477_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109290307133_AddTriggerSlgTonKho.cs" />
+    <Compile Include="Migrations\202109290307133_AddTriggerSlgTonKho.Designer.cs">
+      <DependentUpon>202109290307133_AddTriggerSlgTonKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202109291529576_TaoDangNhap.cs" />
     <Compile Include="Migrations\202109291529576_TaoDangNhap.designer.cs">
       <DependentUpon>202109291529576_TaoDangNhap.cs</DependentUpon>
@@ -102,6 +128,11 @@
     </Compile>
     <Compile Include="Model\ChiTietHoaDon.cs" />
     <Compile Include="Model\MatKhau.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,8 +177,14 @@
     <Compile Include="QuanLySach.Designer.cs">
       <DependentUpon>QuanLySach.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FChiTietHoaDon.resx">
+      <DependentUpon>FChiTietHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FDangNhap.resx">
       <DependentUpon>FDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FDatSach.resx">
+      <DependentUpon>FDatSach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FHoaDon.resx">
       <DependentUpon>FHoaDon.cs</DependentUpon>
@@ -170,6 +207,12 @@
     <EmbeddedResource Include="Migrations\202109271218553_ThemDLVaoSach.resx">
       <DependentUpon>202109271218553_ThemDLVaoSach.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109280358477_update.resx">
+      <DependentUpon>202109280358477_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109290307133_AddTriggerSlgTonKho.resx">
+      <DependentUpon>202109290307133_AddTriggerSlgTonKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109291529576_TaoDangNhap.resx">
       <DependentUpon>202109291529576_TaoDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,10 +224,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="QuanLyNhanVien.resx">
       <DependentUpon>QuanLyNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,7 +253,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

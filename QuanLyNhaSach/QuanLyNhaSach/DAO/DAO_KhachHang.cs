@@ -23,7 +23,9 @@ namespace QuanLyNhaSach.Dao
                 var ds = db.KhachHang.Select(kh => new
                 {
                     kh.KhachHangId,
-                    kh.HoTenKH
+                    kh.HoTenKH,
+                    kh.Sdt,
+                    kh.DiaChi
                 }).ToList();
                 return ds;
             }

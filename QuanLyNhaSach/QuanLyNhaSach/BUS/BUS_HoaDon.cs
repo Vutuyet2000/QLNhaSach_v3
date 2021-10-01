@@ -7,16 +7,19 @@ using QuanLyNhaSach.Model;
 using System.Windows.Forms;
 using QuanLyNhaSach.DAO;
 
-namespace QuanLyNhaSach.Bus
+namespace QuanLyNhaSach.BUS
 {
     class BUS_HoaDon
     {
         DAO_HoaDon dHD;
         DAO_NhanVien dNV;
+        DAO_KhachHang dKH;
+        DAO_ChiTietHoaDon daCTHD;
         public BUS_HoaDon()
         {
             dHD = new DAO_HoaDon();
             dNV = new DAO_NhanVien();
+            dKH = new DAO_KhachHang();
         }
 
         public void HienThiDSHoaDon(DataGridView dg)
@@ -38,39 +41,35 @@ namespace QuanLyNhaSach.Bus
             return true;
         }
 
-        //public void LayDSKH(ComboBox cb)
-        //{
-        //    cb.DataSource = dHD.LayDSKH();
-        //    cb.DisplayMember = "CompanyName";
-        //    cb.ValueMember = "CustomerID";
+        public void LayDSKH(ComboBox cb)
+        {
+            cb.DataSource = dKH.LayDSKH();
+            cb.DisplayMember = "HoTenKH";
+            cb.ValueMember = "KhachHangId";
 
-        //}
+        }
 
         public void LayDSNV(ComboBox cb)
         {
             cb.DataSource = dNV.LayDSNhanVien();
-            cb.DisplayMember = "LastName";
-            cb.ValueMember = "EmployeeID";
+            cb.DisplayMember = "HoTenNV";
+            cb.ValueMember = "NhanVienId";
         }
 
-        public void ThemHD(HoaDon hd)
+        public bool ThemHD(HoaDon hd)
         {
-            if (dHD.ThemHoaDon(hd))
-                MessageBox.Show("Thêm hoá đơn thành công", "Thông báo", MessageBoxButtons.OK);
-            else
-                MessageBox.Show("Thêm hoá đơn không thành công", "Thông báo", MessageBoxButtons.OK);
-
+            return dHD.ThemHoaDon(hd);
         }
 
-        //public bool ThemCTDH(ChiTietHoaDon dh)
-        //{
-        //    daCTDH = new DAO_ChiTietDonHang();
-        //    return daCTDH.ThemCTDH(dh);
-        //}
+        public bool ThemCTHD(ChiTietHoaDon dh)
+        {
+            daCTHD = new DAO_ChiTietHoaDon();
+            return daCTHD.ThemCTDH(dh);
+        }
 
         public void SuaHD(HoaDon o)
         {
-            
+
             if (dHD.SuaTTHoaDon(o))
                 MessageBox.Show("Sửa đơn hàng thành công", "Thông báo", MessageBoxButtons.OK);
             else
@@ -86,8 +85,5 @@ namespace QuanLyNhaSach.Bus
                 MessageBox.Show("Xoá đơn hàng không thành công", "Thông báo", MessageBoxButtons.OK);
 
         }
-
-
-
     }
 }
