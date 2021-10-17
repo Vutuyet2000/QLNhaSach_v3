@@ -92,38 +92,38 @@ namespace QuanLyNhaSach
         }
 
         //bug sau khi them chi tiet hoa don thi lai them 1 hoa don khong biet tu dau
-        private void btnCT_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                HoaDon hd = new HoaDon();
-                hd.KhachHangId = int.Parse(cbKH.SelectedValue.ToString());
+        //private void btnCT_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        HoaDon hd = new HoaDon();
+        //        hd.KhachHangId = int.Parse(cbKH.SelectedValue.ToString());
 
-                hd.NhanVienId = int.Parse(cbNhanVien.SelectedValue.ToString());
+        //        hd.NhanVienId = int.Parse(cbNhanVien.SelectedValue.ToString());
 
-                if (hd.KhachHangId != 0 || hd.NhanVienId != 0)
-                {
-                    hd.NgayLapHoaDon = DateTime.Parse(dtpNgayDH.Value.ToString("yyyy/MM/dd"));
-                    if (bHD.ThemHD(hd))
-                    {
-                        FChiTietHoaDon fChiTietHoaDon = new FChiTietHoaDon();
-                        fChiTietHoaDon.ma = int.Parse(gVDH.CurrentRow.Cells["HoaDonId"].Value.ToString());
-                        //fChiTietHoaDon.ShowDialog();
-                        fChiTietHoaDon.Show();
+        //        if (hd.KhachHangId != 0 || hd.NhanVienId != 0)
+        //        {
+        //            hd.NgayLapHoaDon = DateTime.Parse(dtpNgayDH.Value.ToString("yyyy/MM/dd"));
+        //            if (bHD.ThemHD(hd))
+        //            {
+        //                FChiTietHoaDon fChiTietHoaDon = new FChiTietHoaDon();
+        //                fChiTietHoaDon.ma = int.Parse(gVDH.CurrentRow.Cells["HoaDonId"].Value.ToString());
+        //                //fChiTietHoaDon.ShowDialog();
+        //                fChiTietHoaDon.Show();
 
-                    }
-                    CapNhapGridView();
-                }
-                else
-                {
-                    MessageBox.Show("Khách hàng hoặc nhân viên không được bỏ trống", "Thông báo", MessageBoxButtons.OK);
-                }
-            }
-            catch (Exception ex)
-            {
+        //            }
+        //            CapNhapGridView();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Khách hàng hoặc nhân viên không được bỏ trống", "Thông báo", MessageBoxButtons.OK);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
     }
 }

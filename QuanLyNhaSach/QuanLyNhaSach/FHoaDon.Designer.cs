@@ -61,7 +61,6 @@ namespace QuanLyNhaSach
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
-            this.btnCT = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,7 +206,6 @@ namespace QuanLyNhaSach
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -367,22 +365,11 @@ namespace QuanLyNhaSach
             // statusStrip2
             // 
             this.statusStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip2.Location = new System.Drawing.Point(0, 707);
+            this.statusStrip2.Location = new System.Drawing.Point(0, 705);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1019, 22);
+            this.statusStrip2.Size = new System.Drawing.Size(1019, 24);
             this.statusStrip2.TabIndex = 17;
             this.statusStrip2.Text = "a";
-            // 
-            // btnCT
-            // 
-            this.btnCT.Location = new System.Drawing.Point(425, 279);
-            this.btnCT.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCT.Name = "btnCT";
-            this.btnCT.Size = new System.Drawing.Size(100, 71);
-            this.btnCT.TabIndex = 0;
-            this.btnCT.Text = "Thêm chi tiết";
-            this.btnCT.UseVisualStyleBackColor = true;
-            this.btnCT.Click += new System.EventHandler(this.btnCT_Click);
             // 
             // FHoaDon
             // 
@@ -392,7 +379,6 @@ namespace QuanLyNhaSach
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.btnCT);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -445,6 +431,5 @@ namespace QuanLyNhaSach
         private System.Windows.Forms.ComboBox cbNhanVien;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.StatusStrip statusStrip2;
-        private System.Windows.Forms.Button btnCT;
     }
 }
